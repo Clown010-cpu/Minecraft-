@@ -1,5 +1,6 @@
 boolean wkey, akey, skey, dkey;
 float eyeX, eyeY, eyeZ, focusX, focusY, focusZ, upX, upY, upZ;
+float leftRightHeadAngle, upDownHeadAngle;
 
 void setup(){
   size(800, 600, P3D);
@@ -14,6 +15,8 @@ void setup(){
   upX = 0;
   upY = 1;
   upZ = 1;
+  leftRightHeadAngle = radians(270);
+  noCursor();
 }
 
 void draw(){
@@ -48,9 +51,14 @@ void controlCamera(){
   if (akey) eyeX = eyeX - 10;
   if (dkey) eyeX = eyeX + 10;
   
-    focusX = eyeX;
-    focusY = eyeY;
-    focusZ = eyeZ - 300;
+  leftRightHeadAngle = leftRightHeadAngle + (mouseX - pmouseX)*0.01;
+  upDownHeadAngle = upDownHeadAngle + (mouseY - pmouseY)*0.01;
+  if(upDownHeadAngle > PI/2.5) upDownHeadAngle = PI/2.5;
+  if(upDownHeadAngle < -PI/2.5) upDownHeadAngle = -PI/2.5;
+  
+    focusX = eyeX + cos(leftRightHeadAngle)*300;
+    focusZ = eyeZ + sin(leftRightHeadAngle)*300;
+    focusY = eyeY + tan(upDownHeadAngle)*300;
     
     println(eyeX, eyeY, eyeZ);
 }
