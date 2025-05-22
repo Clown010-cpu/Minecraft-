@@ -46,7 +46,10 @@ void drawFloor(){
 }
 
 void controlCamera(){
-  if (wkey) eyeZ = eyeZ - 10;
+  if (wkey) {
+    eyeX = eyeX + cos(leftRightHeadAngle)*300;
+    eyeZ = eyeZ + sin(leftRightHeadAngle)*300;
+  }
   if (skey) eyeZ = eyeZ + 10;
   if (akey) eyeX = eyeX - 10;
   if (dkey) eyeX = eyeX + 10;
