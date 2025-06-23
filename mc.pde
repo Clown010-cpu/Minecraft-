@@ -307,5 +307,4 @@ void keyReleased() {
 }
 
 void mouseMoved() {
-  // Needed for camera control
 }
